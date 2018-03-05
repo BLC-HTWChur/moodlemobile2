@@ -19,6 +19,7 @@ describe('A user can register sites to the app', function() {
             .sendKeys(SITEURL);
 
         return $('[ng-click="connect(siteurl)"]').click().then(function() {
+			alert('connect');
             element(by.model('credentials.username'))
                 .sendKeys(USERS.STUDENT.LOGIN);
             element(by.model('credentials.password'))

@@ -26,6 +26,32 @@ angular.module('mm.core.login')
 
     $scope.siteurl = '';
 
+	$scope.eduid_auth = function() {
+		var protocols = [
+			"org.ietf.oauth2"
+		];
+		var success = function(token) { 
+			alert("Success!"); 
+		};
+		var error = function(message) { 
+			alert("Error! " + message); 
+		};
+		EduIDPlugin.authorizeProtocols(protocols, success, error);
+		var data = {
+			siteurl: 'https://localhost/moodle',
+			token: 'ae3cf41fbf5fde47ac779e06835a8e39',
+			privatetoken: undefined
+		};
+
+        $mmSitesManager.newSite(data.siteurl, data.token, data.privatetoken).then(function() {
+            $ionicHistory.nextViewOptions({disableBack: true});
+            return $mmLoginHelper.goToSiteInitialPage();
+        }, function(error) {
+            $mmUtil.showErrorModal(error);
+        }).finally(function() {
+        });
+	}
+
     $scope.connect = function(url) {
 
         $mmApp.closeKeyboard();
