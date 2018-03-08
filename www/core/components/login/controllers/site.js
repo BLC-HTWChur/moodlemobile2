@@ -30,26 +30,55 @@ angular.module('mm.core.login')
 		var protocols = [
 			"org.ietf.oauth2"
 		];
-		var success = function(token) { 
-			alert("Success!"); 
+		var success = function() { 
+			EduIDPlugin.parse(
+				null,
+				function() {
+					// get the selected service -> only one in our case
+					EduIDPlugin.serviceNames(
+						function(list) {
+							var service_name = list[0];
+							EduIDPlugin.getServiceToken(
+								service_name,
+								protocols[0],
+								function(service_token) {
+									EduIDPlugin.getServiceUrl(
+										service_name,
+										function(service_url) {
+											var data = {
+												siteurl: service_url,
+												token: service_token,
+												privatetoken: undefined
+											};
+
+											$mmSitesManager.newSite(data.siteurl, data.token, data.privatetoken).then(function() {
+												$ionicHistory.nextViewOptions({disableBack: true});
+												return $mmLoginHelper.goToSiteInitialPage();
+											}, function(error) {
+												$mmUtil.showErrorModal(error);
+											}).finally(function() {
+											});
+										},
+										function(error) {
+											alert(error);
+										}
+									); //end getServiceUrl
+								}
+							); // end getServiceToken
+						}
+					); // end serviceNames
+				}, function(error) {
+					alert(error);
+				}
+			); // end parse
+
 		};
 		var error = function(message) { 
 			alert("Error! " + message); 
 		};
-		EduIDPlugin.authorizeProtocols(protocols, success, error);
-		var data = {
-			siteurl: 'https://localhost/moodle',
-			token: 'ae3cf41fbf5fde47ac779e06835a8e39',
-			privatetoken: undefined
-		};
 
-        $mmSitesManager.newSite(data.siteurl, data.token, data.privatetoken).then(function() {
-            $ionicHistory.nextViewOptions({disableBack: true});
-            return $mmLoginHelper.goToSiteInitialPage();
-        }, function(error) {
-            $mmUtil.showErrorModal(error);
-        }).finally(function() {
-        });
+		// authorize and select platforms
+		EduIDPlugin.authorizeProtocols(protocols, success, error);
 	}
 
     $scope.connect = function(url) {
