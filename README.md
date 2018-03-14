@@ -1,13 +1,9 @@
-Moodle Mobile 2.x
-=================
+Moodle Mobile 2.x Swiss EduID integration
+=========================================
 
-This is the primary repository of source code for the official Moodle Mobile app version 2.x.
+This is the testing ground for integration of the Swiss EduID Authentication.
 
-* [User documentation](http://docs.moodle.org/en/Moodle_Mobile)
-* [Developer documentation](http://docs.moodle.org/dev/Moodle_Mobile)
-* [Development environment setup](http://docs.moodle.org/dev/Setting_up_your_development_environment_for_Moodle_Mobile_2)
-* [Bug Tracker](https://tracker.moodle.org/browse/MOBILE)
-* [Release Notes](http://docs.moodle.org/dev/Moodle_Mobile_Release_Notes)
+The the  primary repository of source code for the official Moodle Mobile app version 2.x is [here](https://github.com/moodlehq/moodlemobile2).
 
 License
 -------
