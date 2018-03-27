@@ -60,7 +60,7 @@ angular.module('mm.core.login')
 											});
 										},
 										function(error) {
-											alert(error);
+											// alert(error);
 										}
 									); //end getServiceUrl
 								}
@@ -68,13 +68,14 @@ angular.module('mm.core.login')
 						}
 					); // end serviceNames
 				}, function(error) {
-					alert(error);
+					// alert(error);
 				}
 			); // end parse
 
 		};
+
 		var error = function(message) { 
-			alert("Error! " + message); 
+			// alert("Error! " + message);
 		};
 
 		// authorize and select platforms
