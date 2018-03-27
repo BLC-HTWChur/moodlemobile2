@@ -8,7 +8,7 @@
     "credentialsdescription": "Please provide your username and password to log in.",
     "confirmdeletesite": "Are you sure you want to delete the site {{sitename}}?",
     "connect": "Connect!",
-    "eduid": "EduID Authentication!",
+    "eduid": "ID App",
     "connecttomoodle": "Connect to Moodle",
     "contactyouradministrator": "Contact your site administrator for further help.",
     "contactyouradministratorissue": "Please, ask the administrator to check the following issue: {{$a}}",
