@@ -28,9 +28,7 @@ angular.module('mm.core.login')
 
 	// eduid button event manager
 	$scope.eduid_auth = function() {
-
 		$EduIDHook.auth();
-
 	}
 
     $scope.connect = function(url) {
