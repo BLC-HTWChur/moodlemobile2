@@ -23,13 +23,18 @@ angular.module('mm.core.login')
  */
 .controller('mmLoginCredentialsCtrl', function($scope, $stateParams, $mmSitesManager, $mmUtil, $ionicHistory, $mmApp, $mmEvents,
             $q, $mmLoginHelper, $mmContentLinksDelegate, $mmContentLinksHelper, $translate, mmCoreLoginSiteCheckedEvent,
-            mmCoreLoginSiteUncheckedEvent) {
+            mmCoreLoginSiteUncheckedEvent, $EduIDHook) {
 
     $scope.siteurl = $stateParams.siteurl;
     $scope.credentials = {
         username: $stateParams.username
     };
     $scope.siteChecked = false;
+
+	// eduid button event manager
+	$scope.eduid_auth = function() {
+		$EduIDHook.auth();
+	}
 
     var urlToOpen = $stateParams.urltoopen,
         siteConfig = $stateParams.siteconfig,

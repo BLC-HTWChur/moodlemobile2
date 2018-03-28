@@ -22,7 +22,7 @@ angular.module('mm.core.login')
  * @name mmLoginReconnectCtrl
  */
 .controller('mmLoginReconnectCtrl', function($scope, $state, $stateParams, $mmSitesManager, $mmApp, $mmUtil, $ionicHistory,
-            $mmLoginHelper, $mmSite) {
+            $mmLoginHelper, $mmSite, $EduIDHook) {
 
     var infositeurl = $stateParams.infositeurl, // Siteurl in site info. It might be different than siteurl (http/https).
         stateName = $stateParams.statename,
@@ -35,6 +35,11 @@ angular.module('mm.core.login')
         password: ''
     };
     $scope.isLoggedOut = $mmSite.isLoggedOut();
+
+	// eduid button event manager
+	$scope.eduid_auth = function() {
+		$EduIDHook.auth();
+	}
 
     $mmSitesManager.getSite($stateParams.siteid).then(function(site) {
         $scope.site = {

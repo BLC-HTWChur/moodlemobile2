@@ -22,64 +22,13 @@ angular.module('mm.core.login')
  * @name mmLoginSiteCtrl
  */
 .controller('mmLoginSiteCtrl', function($scope, $state, $mmSitesManager, $mmUtil, $ionicHistory, $mmApp, $ionicModal, $ionicPopup,
-        $mmLoginHelper, $q) {
+        $mmLoginHelper, $q, $EduIDHook) {
 
     $scope.siteurl = '';
 
+	// eduid button event manager
 	$scope.eduid_auth = function() {
-		var protocols = [
-			"org.ietf.oauth2"
-		];
-		var success = function() { 
-			EduIDPlugin.parse(
-				null,
-				function() {
-					// get the selected service -> only one in our case
-					EduIDPlugin.serviceNames(
-						function(list) {
-							var service_name = list[0];
-							EduIDPlugin.getServiceToken(
-								service_name,
-								protocols[0],
-								function(service_token) {
-									EduIDPlugin.getServiceUrl(
-										service_name,
-										function(service_url) {
-											var data = {
-												siteurl: service_url,
-												token: JSON.parse(service_token).api_key,
-												privatetoken: undefined
-											};
-
-											$mmSitesManager.newSite(data.siteurl, data.token, data.privatetoken).then(function() {
-												$ionicHistory.nextViewOptions({disableBack: true});
-												return $mmLoginHelper.goToSiteInitialPage();
-											}, function(error) {
-												$mmUtil.showErrorModal(error);
-											}).finally(function() {
-											});
-										},
-										function(error) {
-											// alert(error);
-										}
-									); //end getServiceUrl
-								}
-							); // end getServiceToken
-						}
-					); // end serviceNames
-				}, function(error) {
-					// alert(error);
-				}
-			); // end parse
-
-		};
-
-		var error = function(message) { 
-			// alert("Error! " + message);
-		};
-
-		// authorize and select platforms
-		EduIDPlugin.authorizeProtocols(protocols, success, error);
+		$EduIDHook.auth();
 	}
 
     $scope.connect = function(url) {
