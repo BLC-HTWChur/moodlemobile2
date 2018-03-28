@@ -31,9 +31,11 @@ angular.module('mm.core.login')
 			"org.ietf.oauth2"
 		];
 		var success = function() { 
+			/*
 			EduIDPlugin.parse(
 				null,
 				function() {
+					*/
 					// get the selected service -> only one in our case
 					EduIDPlugin.serviceNames(
 						function(list) {
@@ -67,11 +69,13 @@ angular.module('mm.core.login')
 							); // end getServiceToken
 						}
 					); // end serviceNames
-				}, function(error) {
+				/*
+				},//end parse SuccessCallback 
+				function(error) {
 					// alert(error);
-				}
+				}//end parse errorCallback
 			); // end parse
-
+			*/
 		};
 
 		var error = function(message) { 
