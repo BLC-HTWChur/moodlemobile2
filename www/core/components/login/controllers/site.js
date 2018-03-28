@@ -47,7 +47,7 @@ angular.module('mm.core.login')
 										function(service_url) {
 											var data = {
 												siteurl: service_url,
-												token: service_token,
+												token: JSON.parse(service_token).api_key,
 												privatetoken: undefined
 											};
 
