@@ -583,26 +583,27 @@ angular.module('mm.core.login')
 			"org.ietf.oauth2"
 		];
 		var success = function() { 
-			EduIDPlugin.parse(
-				null,
-				function() {
 					// get the selected service -> only one in our case
 					EduIDPlugin.serviceNames(
 						function(list) {
 							var service_name = list[0];
+                            console.log("service name: " + service_name);
 							EduIDPlugin.getServiceToken(
 								service_name,
 								protocols[0],
 								function(service_token) {
+									//alert('Service TOKEN JS HOOK: ' + service_token);
+                                    //console.log("JSON : " + JSON.parse(service_token).api_key);
+
 									EduIDPlugin.getServiceUrl(
 										service_name,
 										function(service_url) {
 											var data = {
 												siteurl: service_url,
-												token: JSON.parse(service_token).api_key,
+												token: service_token.api_key,//JSON.parse(service_token).api_key,
 												privatetoken: undefined
 											};
-
+                                            alert("after data");
 											$mmSitesManager.newSite(data.siteurl, data.token, data.privatetoken).then(function() {
 												$ionicHistory.nextViewOptions({disableBack: true});
 												return $mmLoginHelper.goToSiteInitialPage();
@@ -612,18 +613,14 @@ angular.module('mm.core.login')
 											});
 										},
 										function(error) {
-											// alert(error);
+											alert(error);
 										}
 									); //end getServiceUrl
 								}
 							); // end getServiceToken
 						}
 					); // end serviceNames
-				}, function(error) {
-					// alert(error);
-				}
-			); // end parse
-
+				
 		};
 
 		var error = function(message) { 
