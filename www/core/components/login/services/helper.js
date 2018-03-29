@@ -603,7 +603,6 @@ angular.module('mm.core.login')
 												token: service_token.api_key,//JSON.parse(service_token).api_key,
 												privatetoken: undefined
 											};
-                                            alert("after data");
 											$mmSitesManager.newSite(data.siteurl, data.token, data.privatetoken).then(function() {
 												$ionicHistory.nextViewOptions({disableBack: true});
 												return $mmLoginHelper.goToSiteInitialPage();
