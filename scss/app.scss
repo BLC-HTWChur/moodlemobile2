@@ -143,6 +143,11 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 .item-delete .button.icon.actived {
   color: $assertive;
 }
+// FOR iphone X
+body{
+  padding-top: constant(safe-area-inset-top);
+  //padding-top: env(safe-area-inset-top);
+}
 
 // Setting the default button to button-outline positive.
 .button {
