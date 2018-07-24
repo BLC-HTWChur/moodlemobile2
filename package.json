@@ -14,7 +14,15 @@
     }
   ],
   "dependencies": {
-    "android-versions": "^1.3.0"
+    "android-versions": "^1.3.0",
+    "ch.eduid.provacordovaplugin.NAIL-Cordova": "git+https://github.com/EduID-Mobile/NAIL-Cordova.git",
+    "cordova-browser": "^5.0.3",
+    "cordova-ios": "^4.5.4",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-ionic-keyboard": "^2.1.2",
+    "cordova-plugin-ionic-webview": "^1.2.1",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-whitelist": "^1.3.3"
   },
   "devDependencies": {
     "appium": "^1.6.0",
@@ -110,7 +118,7 @@
     }
   ],
   "scripts": {
-    "setup": "npm install && ionic state restore && bower install && gulp",
+    "setup": "npm install && bower install && gulp",
     "reinstall": "gulp clean-build && gulp clean-libs && gulp clean-node-modules && npm run-script setup",
     "start": "ionic serve",
     "clean": "gulp clean-build",
@@ -123,5 +131,19 @@
     "serve.e2e": "ionic serve -b -a",
     "serve.dev": "ionic serve",
     "e2e": "protractor e2e/build/protractor.conf.js"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {},
+      "ch.eduid.provacordovaplugin.NAIL-Cordova": {}
+    },
+    "platforms": [
+      "browser",
+      "ios"
+    ]
   }
 }

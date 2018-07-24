@@ -584,18 +584,21 @@ angular.module('mm.core.login')
 		];
 		var success = function() { 
 					// get the selected service -> only one in our case
-					EduIDPlugin.serviceNames(
+					//EduIDPlugin.serviceNames(
+                        NAIL_Cordova.serviceNames(
 						function(list) {
 							var service_name = list[0];
                             console.log("service name: " + service_name);
-							EduIDPlugin.getServiceToken(
+							//EduIDPlugin.getServiceToken(
+                            NAIL_Cordova.getServiceToken(
 								service_name,
 								protocols[0],
 								function(service_token) {
 									//alert('Service TOKEN JS HOOK: ' + service_token);
                                     //console.log("JSON : " + JSON.parse(service_token).api_key);
 
-									EduIDPlugin.getServiceUrl(
+									//EduIDPlugin.getServiceUrl(
+                                    NAIL_Cordova.getServiceUrl(    
 										service_name,
 										function(service_url) {
 											var data = {
@@ -627,7 +630,8 @@ angular.module('mm.core.login')
 		};
 
 		// authorize and select platforms
-		EduIDPlugin.authorizeProtocols(protocols, success, error);
+        //EduIDPlugin.authorizeProtocols(protocols, success, error);
+        NAIL_Cordova.authorizeProtocols(protocols, success, error);
 	}
   };
 });
